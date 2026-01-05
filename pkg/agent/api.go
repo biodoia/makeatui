@@ -32,8 +32,8 @@ func (a *API) AddBox(name, text string, x, y, width, height int) string {
 	}
 	data, _ := json.Marshal(params)
 	cmd := Command{Type: string(CmdAddComponent), Params: data}
-	a.session.Execute(cmd)
-	
+	_ = a.session.Execute(cmd)
+
 	// Return the ID of the last added component
 	comps := a.session.ListComponents()
 	if len(comps) > 0 {
@@ -53,8 +53,8 @@ func (a *API) AddText(name, text string, x, y int) string {
 	}
 	data, _ := json.Marshal(params)
 	cmd := Command{Type: string(CmdAddComponent), Params: data}
-	a.session.Execute(cmd)
-	
+	_ = a.session.Execute(cmd)
+
 	comps := a.session.ListComponents()
 	if len(comps) > 0 {
 		return comps[len(comps)-1].ID
@@ -75,8 +75,8 @@ func (a *API) AddButton(name, label string, x, y int) string {
 	}
 	data, _ := json.Marshal(params)
 	cmd := Command{Type: string(CmdAddComponent), Params: data}
-	a.session.Execute(cmd)
-	
+	_ = a.session.Execute(cmd)
+
 	comps := a.session.ListComponents()
 	if len(comps) > 0 {
 		return comps[len(comps)-1].ID

@@ -46,16 +46,16 @@ func DefaultToastStyle() ToastStyle {
 		Bold(true)
 
 	return ToastStyle{
-		Info: base.Copy().
+		Info: base.
 			BorderForeground(lipgloss.Color("#4CC9F0")).
 			Foreground(lipgloss.Color("#4CC9F0")),
-		Success: base.Copy().
+		Success: base.
 			BorderForeground(lipgloss.Color("#6BCB77")).
 			Foreground(lipgloss.Color("#6BCB77")),
-		Warning: base.Copy().
+		Warning: base.
 			BorderForeground(lipgloss.Color("#FFD93D")).
 			Foreground(lipgloss.Color("#FFD93D")),
-		Error: base.Copy().
+		Error: base.
 			BorderForeground(lipgloss.Color("#FF6B6B")).
 			Foreground(lipgloss.Color("#FF6B6B")),
 	}

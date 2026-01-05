@@ -25,7 +25,6 @@ type TextInput struct {
 	MaxLength    int
 	MinLength    int
 	Validator    func(string) error
-	zone         *mouse.Zone
 	labelStyle   lipgloss.Style
 	inputStyle   lipgloss.Style
 	errorStyle   lipgloss.Style

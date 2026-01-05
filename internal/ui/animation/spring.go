@@ -78,8 +78,6 @@ func abs(x float64) float64 {
 // Animator manages multiple spring animations
 type Animator struct {
 	springs   map[string]*Spring
-	ticker    *time.Ticker
-	running   bool
 	frameRate time.Duration
 }
 

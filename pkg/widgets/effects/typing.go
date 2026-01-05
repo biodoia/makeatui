@@ -104,7 +104,6 @@ type TypingTickMsg struct {
 type Gradient struct {
 	Text   string
 	Colors []string
-	style  lipgloss.Style
 }
 
 // NewGradient creates a gradient text

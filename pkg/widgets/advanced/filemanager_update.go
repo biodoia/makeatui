@@ -37,7 +37,7 @@ func (fm *FileManager) Update(msg tea.Msg) (*FileManager, tea.Cmd) {
 			if fm.Cursor >= 0 && fm.Cursor < len(fm.Entries) {
 				entry := fm.Entries[fm.Cursor]
 				if entry.IsDir {
-					fm.SetDirectory(entry.Path)
+					_ = fm.SetDirectory(entry.Path)
 				} else {
 					return fm, func() tea.Msg {
 						return FileOpenMsg{Path: entry.Path}
@@ -54,16 +54,16 @@ func (fm *FileManager) Update(msg tea.Msg) (*FileManager, tea.Cmd) {
 			fm.deselectAll()
 		case ".":
 			fm.ShowHidden = !fm.ShowHidden
-			fm.Refresh()
+			_ = fm.Refresh()
 		case "d":
 			fm.ShowDetails = !fm.ShowDetails
 		case "s":
 			fm.cycleSortBy()
 		case "r":
 			fm.SortReverse = !fm.SortReverse
-			fm.Refresh()
+			_ = fm.Refresh()
 		case "R":
-			fm.Refresh()
+			_ = fm.Refresh()
 		case "y":
 			fm.Copy()
 		case "x":
@@ -78,9 +78,9 @@ func (fm *FileManager) Update(msg tea.Msg) (*FileManager, tea.Cmd) {
 			}
 		case "~":
 			home, _ := os.UserHomeDir()
-			fm.SetDirectory(home)
+			_ = fm.SetDirectory(home)
 		case "/":
-			fm.SetDirectory("/")
+			_ = fm.SetDirectory("/")
 		}
 
 	case tea.MouseMsg:
@@ -91,7 +91,7 @@ func (fm *FileManager) Update(msg tea.Msg) (*FileManager, tea.Cmd) {
 					// Double click simulation
 					entry := fm.Entries[fm.Cursor]
 					if entry.IsDir {
-						fm.SetDirectory(entry.Path)
+						_ = fm.SetDirectory(entry.Path)
 					}
 				} else {
 					fm.Cursor = clickY
@@ -107,7 +107,7 @@ func (fm *FileManager) Update(msg tea.Msg) (*FileManager, tea.Cmd) {
 		}
 
 	case FileRefreshMsg:
-		fm.Refresh()
+		_ = fm.Refresh()
 	}
 
 	return fm, nil
@@ -140,7 +140,7 @@ func (fm *FileManager) ensureVisible() {
 func (fm *FileManager) GoUp() {
 	parent := filepath.Dir(fm.CurrentDir)
 	if parent != fm.CurrentDir {
-		fm.SetDirectory(parent)
+		_ = fm.SetDirectory(parent)
 	}
 }
 
@@ -148,7 +148,7 @@ func (fm *FileManager) GoUp() {
 func (fm *FileManager) GoBack() {
 	if fm.HistoryIdx > 0 {
 		fm.HistoryIdx--
-		fm.SetDirectory(fm.History[fm.HistoryIdx])
+		_ = fm.SetDirectory(fm.History[fm.HistoryIdx])
 	}
 }
 
@@ -218,7 +218,7 @@ func (fm *FileManager) deselectAll() {
 // cycleSortBy cycles through sort options
 func (fm *FileManager) cycleSortBy() {
 	fm.SortBy = (fm.SortBy + 1) % 4
-	fm.Refresh()
+	_ = fm.Refresh()
 }
 
 // Copy copies selected files to clipboard

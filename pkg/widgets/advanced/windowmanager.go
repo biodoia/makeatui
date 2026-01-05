@@ -165,7 +165,7 @@ func (wm *WindowManager) Update(msg tea.Msg) (*WindowManager, tea.Cmd) {
 	// Update focused window
 	if focused := wm.GetFocused(); focused != nil {
 		var cmd tea.Cmd
-		focused, cmd = focused.Update(msg)
+		_, cmd = focused.Update(msg)
 		if cmd != nil {
 			cmds = append(cmds, cmd)
 		}

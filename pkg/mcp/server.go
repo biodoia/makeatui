@@ -206,7 +206,7 @@ func (s *Server) handleMoveComponent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	session.API.Move(req.ComponentID, req.X, req.Y)
+	_ = session.API.Move(req.ComponentID, req.X, req.Y)
 	respondJSON(w, map[string]string{"status": "moved"})
 }
 
@@ -227,7 +227,7 @@ func (s *Server) handleRemoveComponent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	session.API.Delete(req.ComponentID)
+	_ = session.API.Delete(req.ComponentID)
 	respondJSON(w, map[string]string{"status": "removed"})
 }
 
@@ -249,7 +249,7 @@ func (s *Server) handleSetText(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	session.API.SetText(req.ComponentID, req.Text)
+	_ = session.API.SetText(req.ComponentID, req.Text)
 	respondJSON(w, map[string]string{"status": "updated"})
 }
 
@@ -294,11 +294,11 @@ func (s *Server) handleExport(w http.ResponseWriter, r *http.Request) {
 	case "json":
 		jsonStr, _ := session.API.ExportJSON()
 		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte(jsonStr))
+		_, _ = w.Write([]byte(jsonStr))
 	default:
 		code := session.API.Export()
 		w.Header().Set("Content-Type", "text/plain")
-		w.Write([]byte(code))
+		_, _ = w.Write([]byte(code))
 	}
 }
 
@@ -344,7 +344,7 @@ func (s *Server) handleCanvasResource(w http.ResponseWriter, r *http.Request) {
 
 	jsonStr, _ := session.API.ExportJSON()
 	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte(jsonStr))
+	_, _ = w.Write([]byte(jsonStr))
 }
 
 func (s *Server) handleComponentsResource(w http.ResponseWriter, r *http.Request) {
@@ -365,13 +365,13 @@ func (s *Server) handleHealth(w http.ResponseWriter, r *http.Request) {
 // Helper functions
 func respondJSON(w http.ResponseWriter, data any) {
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	_ = json.NewEncoder(w).Encode(data)
 }
 
 func respondError(w http.ResponseWriter, status int, message string) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-	json.NewEncoder(w).Encode(map[string]string{"error": message})
+	_ = json.NewEncoder(w).Encode(map[string]string{"error": message})
 }
 
 var sessionCounter int

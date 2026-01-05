@@ -44,7 +44,7 @@ type FlexItem struct {
 	Grow    int
 	Shrink  int
 	Basis   int
-	style   lipgloss.Style
+	Style   lipgloss.Style
 }
 
 // NewFlexItem creates a new flex item

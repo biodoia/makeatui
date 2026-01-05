@@ -181,8 +181,7 @@ func DefaultSparklineStyle() SparklineStyle {
 	}
 }
 
-// Braille characters for sparkline
-var brailleBlocks = []string{"⣀", "⣤", "⣶", "⣿"}
+// Braille and bar characters for sparkline
 var barBlocks = []string{" ", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"}
 
 // NewSparkline creates a new sparkline

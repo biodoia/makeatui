@@ -80,7 +80,7 @@ func (c *Client) addComponent(ctype, name, text string, x, y, width, height int)
 	var result struct {
 		ID string `json:"id"`
 	}
-	json.Unmarshal(resp, &result)
+	_ = json.Unmarshal(resp, &result)
 	return result.ID, nil
 }
 

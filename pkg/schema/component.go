@@ -137,7 +137,7 @@ func generateID() string {
 	timestamp := time.Now().UnixNano()
 
 	randomBytes := make([]byte, 4)
-	rand.Read(randomBytes)
+	_, _ = rand.Read(randomBytes)
 
 	return "comp_" + hex.EncodeToString([]byte{
 		byte(timestamp >> 24),

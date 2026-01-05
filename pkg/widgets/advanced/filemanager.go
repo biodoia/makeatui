@@ -151,7 +151,7 @@ func NewFileManager(id string, width, height int) *FileManager {
 	if err != nil {
 		dir = "/"
 	}
-	fm.SetDirectory(dir)
+	_ = fm.SetDirectory(dir)
 
 	return fm
 }

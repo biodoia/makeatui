@@ -229,10 +229,7 @@ func (w *Window) View() string {
 	// Combine title and content
 	inner := lipgloss.JoinVertical(lipgloss.Left, titleBar, content)
 
-	// Add resize handle if resizable
-	if w.Resizable {
-		// Handle at bottom-right corner
-	}
+	// Note: Resize handle could be added at bottom-right corner when Resizable is true
 
 	return borderStyle.Width(w.Width).Render(inner)
 }
