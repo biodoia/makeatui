@@ -85,15 +85,15 @@ type FileExplorer struct {
 	Height     int
 	RootPath   string
 	CurrentDir string
-	Entries    []FileEntry
+	Entries    []FileExplorerEntry
 	Selected   int
 	ShowHidden bool
 	scrollY    int
 	style      FileExplorerStyle
 }
 
-// FileEntry represents a file or directory
-type FileEntry struct {
+// FileExplorerEntry represents a file or directory for FileExplorer
+type FileExplorerEntry struct {
 	Name    string
 	Path    string
 	IsDir   bool
@@ -142,7 +142,7 @@ func NewFileExplorer(id string, width, height int) *FileExplorer {
 		Width:    width,
 		Height:   height,
 		RootPath: ".",
-		Entries:  []FileEntry{},
+		Entries:  []FileExplorerEntry{},
 		style:    DefaultFileExplorerStyle(),
 	}
 }
@@ -155,7 +155,7 @@ func (fe *FileExplorer) SetPath(path string) *FileExplorer {
 
 // AddEntry adds a file entry (for demo/mock purposes)
 func (fe *FileExplorer) AddEntry(name string, isDir bool, size int64, icon string) *FileExplorer {
-	fe.Entries = append(fe.Entries, FileEntry{
+	fe.Entries = append(fe.Entries, FileExplorerEntry{
 		Name:  name,
 		IsDir: isDir,
 		Size:  size,
